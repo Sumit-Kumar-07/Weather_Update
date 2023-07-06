@@ -7,6 +7,7 @@ const grantAccessContainer = document.querySelector(".grant-location-container")
 const userInfoContainer = document.querySelector(".user-info-container");
 const apiError = document.querySelector(".api-error-container");
 const fetchError = document.querySelector(".error");
+const grantAccessButton = document.querySelector("[data-grantAccess]");
 
 let oldTab = userTab;
 oldTab.classList.add("current-tab");
@@ -108,18 +109,34 @@ function showPosition(position) {
     fetchUserWeatherInfo(userCoordinates);
 }
 
-const denialText = document.querySelector("[denial]");
+const messageText = document.querySelector("[data-messageText]");
 
 function getLocation() {
     if(navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition);
-        denialText.textContent = 'You denied the request for Geolocation.';
+        navigator.geolocation.getCurrentPosition(showPosition, showError);
     }else {
-        // denialText.textContent = 'Location information is unavailable.';
+        grantAccessBtn.style.display = "none";
+        messageText.innerText = "Geolocation is not supported by this browser.";
     }
 }
 
-const grantAccessButton = document.querySelector("[data-grantAccess]");
+function showError(error) {
+  switch (error.code) {
+    case error.PERMISSION_DENIED:
+      messageText.innerText = "You denied the request for Geolocation.";
+      break;
+    case error.POSITION_UNAVAILABLE:
+      messageText.innerText = "Location information is unavailable.";
+      break;
+    case error.TIMEOUT:
+      messageText.innerText = "The request to get user location timed out.";
+      break;
+    case error.UNKNOWN_ERROR:
+      messageText.innerText = "An unknown error occurred.";
+      break;
+  }
+}
+
 grantAccessButton.addEventListener("click", getLocation);
 
 async function fetchSearchWeatherInfo(city) {
