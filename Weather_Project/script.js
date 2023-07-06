@@ -82,6 +82,7 @@ const loadingScreen = document.querySelector(".loading-container");
 
 async function fetchUserWeatherInfo(Coordinates) {
     const {lat, lon} = Coordinates;
+    apiError.classList.add("remove");
     grantAccessContainer.classList.remove("active");
     loadingScreen.classList.add("active");
 
@@ -140,6 +141,7 @@ function showError(error) {
 grantAccessButton.addEventListener("click", getLocation);
 
 async function fetchSearchWeatherInfo(city) {
+    apiError.classList.add("remove");
     loadingScreen.classList.add("active");
     userInfoContainer.classList.remove("active");
     grantAccessContainer.classList.remove("active");
@@ -157,6 +159,7 @@ async function fetchSearchWeatherInfo(city) {
     catch(err) {
         loadingScreen.classList.remove("active");
         fetchError.classList.add("active");
+        apiError.classList.add("active");
     }
 }
 
