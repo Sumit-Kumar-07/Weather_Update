@@ -12,18 +12,20 @@
     --colorLight2: #F9F7F7;
 }
 
-.wrapper{
-    width:100vw;
-    height:100vh;
-    overflow: hidden;
+body{
+    max-width:100vw;
+    min-height:100vh;
     color: var(--colorLight2);
+    background-color: #112d4e;
     background-image: linear-gradient(160deg, #112d4e 0%, #3f72af 100%);;
 }
 
 h1 {
     text-align: center;
-    text-transform:uppercase;
-    padding-top: 20px;
+    margin-block: 2rem;
+    text-transform:uppercase; 
+    word-spacing: 2px;
+    letter-spacing: 1.75px;
 }
 
 .tab-container {
@@ -51,6 +53,21 @@ h1 {
     margin-block:4rem;
 }
 
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.75rem;
+    }
+
+    .tab-container {
+        margin-top: 2rem;
+        width: 80%;
+    }
+
+    .tab {
+        font-size: 0.75rem;
+    }
+}
+
 .btn{
     all: unset;
     font-size: 0.85rem;
@@ -59,10 +76,12 @@ h1 {
     background-color: var(--colorDark2);
     cursor: pointer;
     padding: 10px 30px;
-    margin-bottom: 10px;
 }
 
 .sub-container{
+    width: 90%;
+    margin: 0 auto;
+    max-width: 1000px;
     display:flex;
     flex-direction:column;
     align-items: center;
@@ -83,14 +102,16 @@ h1 {
 .grant-location-container p:first-of-type{
     font-size: 1.75rem;
     font-weight: 600; 
+    text-align: center;
 }
 
 .grant-location-container p:last-of-type{
     font-size:0.85rem;
-    font-weight: 500;
+    font-weight: 300;
     margin-top: 0.75rem;
     margin-bottom: 1.75rem;
     letter-spacing: 0.75px;
+    text-align: center;
 }
 
 .loading-container{
@@ -148,9 +169,10 @@ h1 {
 .parameter-container{
     width:90%;
     display: flex;
+    margin: 0 auto;
     gap: 10px 20px;
     justify-content: center;
-    align-items: center;
+    flex-wrap: wrap;
     margin-top: 2rem;
 }
 
@@ -162,6 +184,7 @@ h1 {
     padding:1rem;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     gap:5px 0;
     align-items: center; 
 }   
@@ -169,6 +192,7 @@ h1 {
 .parameter img{
     width:50px;
     height:50px;
+    object-fit: cover;
 }
 
 .parameter p:first-of-type{
@@ -180,6 +204,17 @@ h1 {
 .parameter p:last-of-type{
     font-size: 1rem;
     font-weight: 200;
+}
+
+@media (max-width: 768px) {
+    .parameter-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .parameter {
+        width: 100%;
+    }
 }
 
 .form-container{
@@ -233,6 +268,18 @@ h1 {
     display: flex;
     gap: 1rem 0;
 }
+
+.api-error-container p {
+    text-align: center;
+}
+
+.api-error-container img {
+    width: 100%;
+    max-width: 300px;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+}
+
 
 .error {
     display: none;
